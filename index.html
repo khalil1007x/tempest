@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempest Website</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+</head>
+<body>
+    <!-- Floating Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">TEMPEST</a>
+            <div class="nav-center">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#Leaders">Leaders</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="mobile-auth-buttons">
+                        <a href="#" class="auth-btn login-btn">Login</a>
+                        <a href="#" class="auth-btn signup-btn">Sign Up</a>
+                    </li>
+                </ul>
+                
+            </div>
+            <div class="auth-buttons">
+                <a href="#" class="auth-btn login-btn">Login</a>
+                <a href="#" class="auth-btn signup-btn">Sign Up</a>
+            </div>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+        <div>
+            <h1>TEMPEST</h1>
+            <h2>WE ARE TEMPEST</h2>
+            <p class="section-info">Welcome section with hero content, main headline, and call-to-action buttons</p>
+            <button class="chaos-button" onclick="window.open('https://example.com', '_blank')">
+                <canvas class="chaos-canvas"></canvas>
+                <span class="chaos-label">انضم الآن</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div>
+            <h1>ABOUT</h1>
+            <p class="section-info">Company story, mission, vision, team information, and core values</p>
+            
+            <!-- About Stats Cards -->
+            <div class="about-stats">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="150">0</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">Team Members</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+            </div>
+            
+            <!-- About Cards -->
+            <div class="about-cards">
+                <div class="about-card">
+                    <div class="about-icon">🚀</div>
+                    <h3>Innovation</h3>
+                    <p>Pushing boundaries with cutting-edge technology and creative solutions that transform industries.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">🎯</div>
+                    <h3>Excellence</h3>
+                    <p>Delivering exceptional quality and results that exceed expectations every single time.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">🤝</div>
+                    <h3>Partnership</h3>
+                    <p>Building lasting relationships through trust, transparency, and mutual success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEADERS Section -->
+    <section id="LEADERS" class="section">
+        <div>
+            <h1>MEET OUR FOUNDERS</h1>
+            
+            <!-- Founders Carousel -->
+            <div class="founders-carousel">
+                <div class="founders-track">
+                    <div class="founders-card">
+                        <img src="media/Gilgamesh.jpg" alt="Gilgamesh" class="founders-image">
+                        <h3>GILGAMESH</h3>
+                        <p>Visionary leader with 15+ years in tech innovation. Passionate about building transformative solutions.</p>
+                    </div>
+                    <div class="founders-card">
+                        <img src="media/gaara.jpg" alt="gaara" class="founders-image">
+                        <h3>GAARA</h3>
+                        <p>Creative director specializing in user experience and brand identity. Award-winning designer.</p>
+                    </div>
+                    <div class="founders-card">
+                        <img src="media/kim dokja.jpg" alt="kim dokja" class="founders-image">
+                        <h3>KIM DOKJA</h3>
+                        <p>Full-stack architect with expertise in scalable systems and cloud infrastructure.</p>
+                    </div>
+                    <div class="founders-card">
+                        <img src="media/nagi.jpg" alt="nagi" class="founders-image">
+                        <h3>NAGI</h3>
+                        <p>Marketing strategist focused on growth hacking and digital transformation.</p>
+                    </div>
+                    <div class="founders-card">
+                        <img src="media/nagumo.jpg" alt="nagumo" class="founders-image">
+                        <h3>NAGUMO</h3>
+                        <p>Operations expert optimizing processes and driving efficiency across all departments.</p>
+                    </div>
+                    <div class="founders-card">
+                        <img src="media/shadow.jpg" alt="shadow" class="founders-image">
+                        <h3>SHADOW</h3>
+                        <p>Data scientist specializing in machine learning and AI innovation. Research lead with 10+ years experience.</p>
+                    </div>
+                </div>
+                
+                <button class="founders-arrow founders-left">‹</button>
+                <button class="founders-arrow founders-right">›</button>
+                
+                <div class="founders-dots">
+                    <div class="founders-dot active"></div>
+                    <div class="founders-dot"></div>
+                    <div class="founders-dot"></div>
+                    <div class="founders-dot"></div>
+                    <div class="founders-dot"></div>
+                </div>
+            </div>
+            
+            <div class="founders-info">
+                <div class="founders-name">GILGAMESH</div>
+                <div class="founders-role">CEO & FOUNDER</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section">
+        <div>
+            <h1>PORTFOLIO</h1>
+            <p class="section-info">Project showcase, case studies, client work, and achievements gallery</p>
+            
+            <!-- Portfolio Cards -->
+            <div class="portfolio-cards">
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="media/portfolio1.jpg" alt="Project 1" class="portfolio-img">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>DIGITAL TRANSFORMATION</h3>
+                        <p>Complete digital overhaul for enterprise client, resulting in 200% increase in operational efficiency.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Web Design</span>
+                            <span class="tag">Development</span>
+                            <span class="tag">Strategy</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="media/portfolio2.jpg" alt="Project 2" class="portfolio-img">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>BRAND IDENTITY SYSTEM</h3>
+                        <p>Comprehensive brand redesign including logo, guidelines, and marketing materials for tech startup.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Branding</span>
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">Marketing</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="media/portfolio3.jpg" alt="Project 3" class="portfolio-img">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>MOBILE APPLICATION</h3>
+                        <p>Native iOS and Android app development with real-time data synchronization and cloud integration.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Mobile</span>
+                            <span class="tag">Cloud</span>
+                            <span class="tag">Backend</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div>
+            <h1>CONTACT</h1>
+            <p class="section-info">Contact form, office locations, phone numbers, and social media links</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="#about">About Us</a>
+                    <a href="#Leaders">Leaders</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <a href="#">hello@company.com</a>
+                    <a href="#">+1 (555) 123-4567</a>
+                    <a href="#">Follow Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Company Name. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
