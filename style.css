@@ -13,6 +13,7 @@ body {
     background: #0a0a0a;
     color: #ffffff;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 /* Floating Navbar */
@@ -103,10 +104,10 @@ body {
     transition: all 0.3s ease;
 }
 .mobile-auth-buttons {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-}
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+    }
 
 .login-btn {
     color: #e0e0e0;
@@ -149,6 +150,7 @@ body {
     justify-content: center;
     position: relative;
     padding: 80px 20px 20px;
+    overflow-x: hidden;
 }
 
 .section h1 {
@@ -353,17 +355,20 @@ body {
 }
 
 .portfolio-image {
-    width: 100%;
+    width: 380px;
     height: 250px;
     overflow: hidden;
     position: relative;
+    flex-shrink: 0;
 }
 
 .portfolio-img {
-    width: 100%;
-    height: 100%;
+    width: 380px;
+    height: 250px;
     object-fit: cover;
     transition: transform 0.6s ease;
+    object-position: center;
+    display: block;
 }
 
 .portfolio-card:hover .portfolio-img {
@@ -435,6 +440,7 @@ body {
     position: relative;
     perspective: 1000px;
     margin: 40px auto;
+    overflow: hidden;
 }
 
 .founders-track {
@@ -739,6 +745,13 @@ body {
     font-size: 0.85rem;
 }
 
+.footer-bottom p:last-child {
+    color: #ffffff;
+    font-weight: 600;
+    margin-top: 5px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .navbar {
@@ -780,6 +793,37 @@ body {
     .mobile-auth-buttons {
         display: flex;
         gap: 10px;
+    }
+    
+    .mobile-auth-buttons .signup-btn {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid #ffffff !important;
+        white-space: nowrap;
+    }
+    
+    .mobile-auth-buttons .signup-btn:hover {
+        background: #f0f0f0 !important;
+        transform: translateY(-1px);
+    }
+    
+    .menu-toggle {
+        display: block;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+    
+    .menu-toggle:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: scale(1.05);
     }
     
     .section h1 {
@@ -831,6 +875,14 @@ body {
         height: 200px;
     }
     
+    .portfolio-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+    }
+    
     .portfolio-content {
         padding: 25px;
     }
@@ -851,19 +903,19 @@ body {
     }
 
     .founders-card.left-1 {
-        transform: translateX(-150px) scale(0.9);
+        transform: translateX(-120px) scale(0.9);
     }
 
     .founders-card.left-2 {
-        transform: translateX(-300px) scale(0.8);
+        transform: translateX(-240px) scale(0.8);
     }
 
     .founders-card.right-1 {
-        transform: translateX(150px) scale(0.9);
+        transform: translateX(120px) scale(0.9);
     }
 
     .founders-card.right-2 {
-        transform: translateX(300px) scale(0.8);
+        transform: translateX(240px) scale(0.8);
     }
 
     .founders-name {
@@ -915,6 +967,442 @@ body {
     }
 }
 
+/* Vertical Music Player Styles */
+.music-player-vertical {
+    background: linear-gradient(180deg, rgba(20, 20, 20, 0.98) 0%, rgba(40, 40, 40, 0.95) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    padding: 0;
+    margin: 40px auto;
+    max-width: 320px;
+    width: 100%;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+}
+
+.player-header-vertical {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    padding: 25px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px 30px 0 0;
+}
+
+.album-art {
+    margin-bottom: 20px;
+}
+
+.album-image {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #444, #222);
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.album-image::before {
+    content: '🎵';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    opacity: 0.3;
+}
+
+.track-info-vertical {
+    margin: 0;
+}
+
+.track-name-vertical {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.artist-name-vertical {
+    font-size: 0.9rem;
+    color: #999;
+    margin: 0;
+    font-style: italic;
+}
+
+.player-body-vertical {
+    padding: 25px;
+}
+
+.visualizer-vertical {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 45px;
+    gap: 3px;
+    margin-bottom: 20px;
+    /* More prominent on mobile */
+    padding: 8px 0;
+    /* Add subtle glow effect */
+    filter: drop-shadow(0 0 10px rgba(102, 102, 102, 0.3));
+}
+
+@media (max-width: 320px) {
+    .visualizer-vertical {
+        height: 50px;
+        margin-bottom: 15px;
+        /* Very prominent on small screens */
+        padding: 10px 0;
+        /* Strong glow effect */
+        filter: drop-shadow(0 0 15px rgba(102, 102, 102, 0.5));
+    }
+    
+    .viz-bar {
+        width: 5px;
+        background: linear-gradient(to top, #666, #999);
+        border-radius: 3px;
+        animation: vizAnimation 0.5s ease-in-out infinite;
+        /* Very visible and animated */
+        min-height: 25px;
+        /* Strong glow effect */
+        box-shadow: 0 0 8px rgba(153, 153, 153, 0.6);
+    }
+    
+    .viz-bar:nth-child(1) { animation-delay: 0s; height: 35px; }
+    .viz-bar:nth-child(2) { animation-delay: 0.04s; height: 45px; }
+    .viz-bar:nth-child(3) { animation-delay: 0.08s; height: 40px; }
+    .viz-bar:nth-child(4) { animation-delay: 0.12s; height: 50px; }
+    .viz-bar:nth-child(5) { animation-delay: 0.16s; height: 43px; }
+    .viz-bar:nth-child(6) { animation-delay: 0.20s; height: 47px; }
+    .viz-bar:nth-child(7) { animation-delay: 0.24s; height: 37px; }
+    .viz-bar:nth-child(8) { animation-delay: 0.28s; height: 45px; }
+}
+
+.viz-bar {
+    width: 4px;
+    background: linear-gradient(to top, #666, #999);
+    border-radius: 2px;
+    animation: vizAnimation 0.6s ease-in-out infinite;
+    /* Make bars more visible and animated */
+    min-height: 20px;
+    /* Add glow effect */
+    box-shadow: 0 0 5px rgba(153, 153, 153, 0.4);
+}
+
+.viz-bar:nth-child(1) { animation-delay: 0s; height: 30px; }
+.viz-bar:nth-child(2) { animation-delay: 0.05s; height: 40px; }
+.viz-bar:nth-child(3) { animation-delay: 0.1s; height: 35px; }
+.viz-bar:nth-child(4) { animation-delay: 0.15s; height: 45px; }
+.viz-bar:nth-child(5) { animation-delay: 0.2s; height: 38px; }
+.viz-bar:nth-child(6) { animation-delay: 0.25s; height: 42px; }
+.viz-bar:nth-child(7) { animation-delay: 0.3s; height: 32px; }
+.viz-bar:nth-child(8) { animation-delay: 0.35s; height: 40px; }
+
+@keyframes vizAnimation {
+    0%, 100% { 
+        transform: scaleY(0.3); 
+        opacity: 0.6; 
+        background: linear-gradient(to top, #666, #888);
+    }
+    25% { 
+        transform: scaleY(0.8); 
+        opacity: 0.8;
+        background: linear-gradient(to top, #777, #999);
+    }
+    50% { 
+        transform: scaleY(1); 
+        opacity: 1; 
+        background: linear-gradient(to top, #888, #aaa);
+    }
+    75% { 
+        transform: scaleY(0.6); 
+        opacity: 0.9;
+        background: linear-gradient(to top, #777, #999);
+    }
+}
+
+.progress-vertical {
+    margin-bottom: 25px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.progress-line {
+    height: 100%;
+    background: linear-gradient(90deg, #666, #999, #ccc);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.1s ease;
+}
+
+.time-vertical {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.controls-vertical {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.btn-vertical {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-vertical:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.btn-vertical.play-vertical {
+    width: 50px;
+    height: 50px;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, #555, #333);
+    border-color: #444;
+}
+
+.btn-vertical.play-vertical:hover {
+    background: linear-gradient(135deg, #666, #444);
+}
+
+.volume-section-vertical {
+    margin-bottom: 25px;
+}
+
+.volume-control-vertical {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+}
+
+.volume-icon {
+    color: #999;
+    font-size: 1rem;
+}
+
+.volume-range-vertical {
+    flex: 1;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.volume-range-vertical::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+    background: #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.volume-range-vertical::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    background: #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.playlist-vertical {
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0 0 30px 30px;
+}
+
+.playlist-header-vertical {
+    padding: 15px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.playlist-items-vertical {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.playlist-item-vertical {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    margin: 0 10px 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+}
+
+.playlist-item-vertical:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.playlist-item-vertical.active {
+    background: rgba(255, 255, 255, 0.08);
+    border-left: 3px solid #666;
+    border-radius: 12px;
+}
+
+.item-number {
+    color: #666;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-right: 15px;
+    min-width: 20px;
+}
+
+.item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-name {
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.item-artist {
+    color: #888;
+    font-size: 0.8rem;
+}
+
+.item-duration {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .music-player-vertical {
+        margin: 30px 20px;
+        max-width: none;
+        width: calc(100% - 40px);
+    }
+    
+    .player-header-vertical {
+        padding: 20px 15px;
+    }
+    
+    .album-image {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .player-body-vertical {
+        padding: 20px 15px;
+    }
+    
+    .controls-vertical {
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    
+    .btn-vertical {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+        /* Larger touch targets for mobile */
+        min-width: 45px;
+        min-height: 45px;
+    }
+    
+    .btn-vertical.play-vertical {
+        width: 55px;
+        height: 55px;
+        font-size: 1.2rem;
+        min-width: 55px;
+        min-height: 55px;
+    }
+    
+    .volume-control-vertical {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .playlist-items-vertical {
+        max-height: 180px;
+    }
+    
+    .playlist-item-vertical {
+        padding: 15px;
+        /* Larger touch targets for mobile */
+        min-height: 60px;
+    }
+    
+    .progress-track {
+        height: 6px;
+        margin-bottom: 10px;
+        /* Larger touch target */
+        padding: 5px 0;
+        cursor: pointer;
+    }
+    
+    .volume-range-vertical {
+        height: 6px;
+        /* Larger touch target */
+        padding: 5px 0;
+    }
+    
+    .volume-range-vertical::-webkit-slider-thumb {
+        width: 16px;
+        height: 16px;
+        background: #ffffff;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    
+    .volume-range-vertical::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        background: #ffffff;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+}
+
 @media (max-width: 480px) {
     .section h1 {
         font-size: 2.5rem;
@@ -926,6 +1414,224 @@ body {
 
     .logo {
         font-size: 1.3rem;
+    }
+    
+    .menu-toggle {
+        font-size: 1.3rem;
+        padding: 6px 10px;
+        border-radius: 6px;
+    }
+    
+    .menu-toggle:hover {
+        transform: scale(1.1);
+    }
+    
+    .music-player-vertical {
+        margin: 20px 15px;
+        width: calc(100% - 30px);
+        border-radius: 25px;
+    }
+    
+    .player-header-vertical {
+        padding: 15px 12px;
+        border-radius: 25px 25px 0 0;
+    }
+    
+    .album-image {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .track-name-vertical {
+        font-size: 1.1rem;
+    }
+    
+    .artist-name-vertical {
+        font-size: 0.85rem;
+    }
+    
+    .player-body-vertical {
+        padding: 15px 12px;
+    }
+    
+    .visualizer-vertical {
+        height: 35px;
+        margin-bottom: 20px;
+    }
+    
+    .controls-vertical {
+        gap: 10px;
+        margin-bottom: 15px;
+        /* Centered controls - balanced for all users */
+        justify-content: center;
+        padding: 0;
+    }
+    
+    .btn-vertical {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+        min-width: 40px;
+        min-height: 40px;
+        /* Better spacing for left-handed users */
+        margin: 0 2px;
+    }
+    
+    .btn-vertical.play-vertical {
+        width: 50px;
+        height: 50px;
+        font-size: 1.1rem;
+        min-width: 50px;
+        min-height: 50px;
+    }
+    
+    .progress-vertical {
+        margin-bottom: 15px;
+        /* Left-handed friendly - more accessible positioning */
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    
+    .progress-track {
+        height: 5px;
+        padding: 8px 0;
+        /* Larger touch area for left-handed users */
+        margin: 0 -5px;
+    }
+    
+    .time-vertical {
+        font-size: 0.7rem;
+        margin: 0 5px;
+    }
+    
+    .volume-section-vertical {
+        margin-bottom: 15px;
+        /* Left-handed friendly positioning */
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    
+    .volume-control-vertical {
+        padding: 12px 10px;
+        /* Left-handed friendly - align controls to left */
+        justify-content: flex-start;
+        gap: 10px;
+    }
+    
+    .volume-icon {
+        font-size: 1.1rem;
+        /* Larger touch target */
+        padding: 5px;
+        margin: -5px;
+    }
+    
+    .volume-range-vertical {
+        height: 5px;
+        padding: 8px 0;
+        /* Larger touch area */
+        margin: 0 -8px;
+    }
+    
+    .volume-range-vertical::-webkit-slider-thumb {
+        width: 18px;
+        height: 18px;
+        background: #ffffff;
+        border-radius: 9px;
+        cursor: pointer;
+        /* Even larger for small screens with rounded corners */
+    }
+    
+    .volume-range-vertical::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        background: #ffffff;
+        border-radius: 9px;
+        cursor: pointer;
+        /* Even larger for small screens with rounded corners */
+    }
+    
+    .playlist-vertical {
+        /* Left-handed friendly - better positioning */
+        margin-left: 5px;
+        margin-right: 5px;
+        border-radius: 0 0 25px 25px;
+    }
+    
+    .playlist-header-vertical {
+        padding: 12px 15px;
+        font-size: 0.85rem;
+    }
+    
+    .playlist-items-vertical {
+        max-height: 150px;
+    }
+    
+    .playlist-item-vertical {
+        padding: 12px 15px;
+        min-height: 55px;
+        /* Left-handed friendly - larger touch areas */
+        margin: 0 -5px;
+        padding: 12px 20px;
+    }
+    
+    .item-number {
+        font-size: 0.85rem;
+        margin-right: 12px;
+        min-width: 18px;
+    }
+    
+    .item-name {
+        font-size: 0.85rem;
+    }
+    
+    .item-artist {
+        font-size: 0.75rem;
+    }
+    
+    .item-duration {
+        font-size: 0.75rem;
+    }
+}
+
+/* Extra small screens - centered balanced design */
+@media (max-width: 360px) {
+    .music-player-vertical {
+        margin: 15px 10px;
+        width: calc(100% - 20px);
+    }
+    
+    .controls-vertical {
+        /* Centered controls for very small screens */
+        justify-content: center;
+        padding: 0;
+        gap: 8px;
+    }
+    
+    .btn-vertical {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        min-height: 38px;
+        margin: 0 1px;
+    }
+    
+    .btn-vertical.play-vertical {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+    }
+    
+    .volume-control-vertical {
+        /* Even more left-aligned */
+        justify-content: flex-start;
+        padding-left: 5px;
+    }
+    
+    .playlist-item-vertical {
+        /* Larger touch areas for left-handed users */
+        padding: 15px 18px;
+        margin: 0 -8px;
     }
 }
 
