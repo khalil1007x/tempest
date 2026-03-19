@@ -1283,6 +1283,65 @@ body {
     border-radius: 12px;
 }
 
+/* Footer Developer Button */
+.footer-developer {
+    text-align: center;
+    padding: 20px 0 15px 0;
+}
+
+.footer-developer-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(10px);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    position: relative;
+    overflow: hidden;
+    transform: translateY(-25px);
+}
+
+.footer-developer-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.4s ease;
+}
+
+.footer-developer-btn:hover::before {
+    left: 100%;
+}
+
+.footer-developer-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-28px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.footer-developer-btn:active {
+    transform: translateY(-22px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 8px rgba(255, 255, 255, 0.03);
+}
+
+.footer-developer-icon {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
 .item-number {
     color: #666;
     font-size: 0.8rem;
@@ -1555,6 +1614,25 @@ body {
         margin-left: 5px;
         margin-right: 5px;
         border-radius: 0 0 25px 25px;
+    }
+    
+    .footer-developer {
+        padding: 15px 0 10px 0;
+    }
+    
+    .footer-developer-btn {
+        padding: 10px 20px;
+        font-size: 0.7rem;
+        gap: 5px;
+        transform: translateY(-18px);
+    }
+    
+    .footer-developer-btn:hover {
+        transform: translateY(-20px);
+    }
+    
+    .footer-developer-btn:active {
+        transform: translateY(-16px);
     }
     
     .playlist-header-vertical {

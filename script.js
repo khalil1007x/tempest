@@ -538,28 +538,56 @@ class VerticalMusicPlayer {
     }
     
     play() {
-        this.isPlaying = true;
-        this.playBtn.textContent = '⏸';
-        this.animateVisualizer(true);
-        this.startProgressSimulation();
+        // If already playing, don't do anything
+        if (this.isPlaying) {
+            return Promise.resolve();
+        }
         
-        // Try video audio first (most likely to work)
+        // Try video audio first
         if (this.videoAudio) {
-            this.videoAudio.muted = false;
-            this.videoAudio.play().then(() => {
+            return this.videoAudio.play().then(() => {
                 console.log('Video audio playing successfully');
+                this.isPlaying = true;
+                this.playBtn.textContent = '⏸';
+                this.animateVisualizer(true);
+                this.startProgressSimulation();
             }).catch(e => {
                 console.log('Video audio play failed:', e);
                 // Fallback to regular audio
-                this.playRegularAudio();
+                return this.playRegularAudio();
             });
         } else {
             // Fallback to regular audio
-            this.playRegularAudio();
+            return this.playRegularAudio();
         }
         
         // Mark that user has interacted
         this.hasInteracted = true;
+    }
+    
+    playRegularAudio() {
+        return new Promise((resolve, reject) => {
+            try {
+                // Create a new audio element as fallback
+                const audio = new Audio('media/music/the weeknd.mp3');
+                audio.volume = 0.7;
+                audio.play().then(() => {
+                    console.log('Regular audio playing successfully');
+                    this.currentAudio = audio;
+                    this.isPlaying = true;
+                    this.playBtn.textContent = '⏸';
+                    this.animateVisualizer(true);
+                    this.startProgressSimulation();
+                    resolve();
+                }).catch(e => {
+                    console.log('Regular audio play failed:', e);
+                    reject(e);
+                });
+            } catch (e) {
+                console.log('Error creating audio element:', e);
+                reject(e);
+            }
+        });
     }
     
     pause() {
@@ -820,19 +848,28 @@ class VerticalMusicPlayer {
 document.addEventListener('DOMContentLoaded', () => {
     const verticalPlayer = new VerticalMusicPlayer();
     
-    // Try immediate play with Web Audio API
+    // Try immediate play with Web Audio API - more robust approach
     setTimeout(() => {
         console.log('Attempting immediate play with Web Audio API');
         if (window.globalAudioContext && window.globalAudioContext.state === 'suspended') {
+            // Try to resume context first
             window.globalAudioContext.resume().then(() => {
-                console.log('Global context resumed, attempting play');
-                verticalPlayer.play();
+                console.log('Global context resumed successfully');
+                // Now try to play
+                verticalPlayer.play().catch(e => {
+                    console.log('Play failed after context resume:', e);
+                });
             }).catch(e => {
                 console.log('Failed to resume global context:', e);
-                verticalPlayer.play();
+                // Try anyway
+                verticalPlayer.play().catch(e => {
+                    console.log('Direct play failed:', e);
+                });
             });
         } else {
-            verticalPlayer.play();
+            verticalPlayer.play().catch(e => {
+                console.log('Direct play failed:', e);
+            });
         }
-    }, 100);
+    }, 1000); // Increased delay to ensure everything is loaded
 });
