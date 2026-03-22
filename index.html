@@ -84,32 +84,32 @@
                 <div class="founders-card">
                     <img src="media/image/Gilgamesh.jpg" alt="Gilgamesh" class="founders-image">
                     <h3>GILGAMESH</h3>
-                    <p>الامبراطور و القائد الاعلى</p>
-                </div>
-                <div class="founders-card">
-                    <img src="media/image/gaara.jpg" alt="gaara" class="founders-image">
-                    <h3>GAARA</h3>
-                    <p>لورد المملكة</p>
-                </div>
-                <div class="founders-card">
-                    <img src="media/image/kim dokja.jpg" alt="kim dokja" class="founders-image">
-                    <h3>KIM DOKJA</h3>
-                    <p>مستشار </p>
-                </div>
-                <div class="founders-card">
-                    <img src="media/image/nagi.jpg" alt="nagi" class="founders-image">
-                    <h3>NAGI</h3>
-                    <p>نائب اللورد</p>
+                    <p>امبراطور</p>
                 </div>
                 <div class="founders-card">
                     <img src="media/image/nagumo.jpg" alt="nagumo" class="founders-image">
                     <h3>NAGUMO</h3>
-                    <p>نائب الامبراطور</p>
+                    <p>نائب امبراطور (زوجته)</p>
+                </div>
+                <div class="founders-card">
+                    <img src="media/image/kim dokja.jpg" alt="kim dokja" class="founders-image">
+                    <h3>KIM DOKJA</h3>
+                    <p>مستشار</p>
+                </div>
+                <div class="founders-card">
+                    <img src="media/image/gaara.jpg" alt="gaara" class="founders-image">
+                    <h3>GAARA</h3>
+                    <p>لورد</p>
+                </div>
+                <div class="founders-card">
+                    <img src="media/image/nagi.jpg" alt="nagi" class="founders-image">
+                    <h3>NAGI</h3>
+                    <p>نائب لورد</p>
                 </div>
                 <div class="founders-card">
                     <img src="media/image/shadow.jpg" alt="shadow" class="founders-image">
                     <h3>SHADOW</h3>
-                    <p>ماركيز.</p>
+                    <p>ماركيز</p>
                 </div>
             </div>
         </div>
@@ -143,7 +143,7 @@
                         <img src="media/image/portfolio2.jpg" alt="Project 2" class="portfolio-img">
                     </div>
                     <div class="portfolio-content">
-                        <h3>دوقية نرفال</h3>
+                        <h3>دوقية بلويد</h3>
                         <p>دردشة وتفاعل واحداث ومنافسات وترقيات. لايفوتك.</p>
                         <div class="portfolio-tags">
                             <span class="tag">دردشة</span>
@@ -158,7 +158,7 @@
                         <img src="media/image/portfolio3.jpg" alt="Project 3" class="portfolio-img">
                     </div>
                     <div class="portfolio-content">
-                        <h3>دوقية اركين</h3>
+                        <h3>دوقية اهجين</h3>
                         <p>دردشة وتفاعل واحداث ومنافسات وترقيات. لايفوتك</p>
                         <div class="portfolio-tags">
                             <span class="tag">دردشة</span>
@@ -179,17 +179,10 @@
             
             <!-- New Music Player -->
             <div class="neon-music-player">
-                <div class="player-header">
-                    <h2 class="player-title">🎵 TEMPEST MUSIC</h2>
-                    <div class="live-indicator">
-                        <span class="live-dot"></span>
-                        <span class="live-text">LIVE</span>
-                    </div>
-                </div>
                 
                 <div class="track-info">
-                    <h3 class="track-name">Now Playing</h3>
-                    <p class="artist-name">Artist Name</p>
+                    <h3 class="track-name">يتم التشغيل الآن</h3>
+                    <p class="artist-name">House of Balloons</p>
                 </div>
                 
                 <div class="visualizer">
@@ -247,14 +240,14 @@
                 
                 <div class="playlist">
                     <div class="playlist-header">
-                        <h4>Now Playing</h4>
-                        <span class="track-count">1 track</span>
+                        <h4>يتم التشغيل الآن</h4>
+                        <span class="track-count">مقطع واحد</span>
                     </div>
                     <div class="playlist-items">
                         <div class="playlist-item active">
                             <span class="item-number">♪</span>
                             <div class="item-info">
-                                <span class="item-name">the weeknd</span>
+                                <span class="item-name">House of Balloons</span>
                                 <span class="item-duration">4:12</span>
                             </div>
                             <span class="playing-indicator">▶</span>
@@ -270,7 +263,7 @@
         <div class="footer-container">
             <!-- Developer Contact Section -->
             <div class="footer-developer">
-                <button class="footer-developer-btn" onclick="window.open('https://wa.me/966500000000')">
+                <button class="footer-developer-btn" onclick="window.open('https://wa.me/212771289136')">
                     <span class="footer-developer-icon"></span>
                     <span>المطور</span>
                 </button>
@@ -303,7 +296,7 @@
 
     <!-- Hidden video audio player for autoplay -->
     <video id="videoAudio" style="display:none;" autoplay loop muted>
-        <source src="media/music/the weeknd.mp3" type="audio/mpeg">
+        <source src="media/music/house of balloons.mp3" type="audio/mpeg">
     </video>
     
     <!-- Hidden iframe audio player for autoplay -->
@@ -332,7 +325,7 @@
         setTimeout(() => {
             const iframe = document.getElementById('audioPlayer');
             if (iframe) {
-                iframe.src = 'media/music/the weeknd.mp3';
+                iframe.src = 'media/music/house of balloons.mp3';
                 console.log('Loading music in iframe for autoplay');
             }
         }, 100);
