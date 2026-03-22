@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دوقية بلويد - فرع مملكة تمبست</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .branch-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 40px;
+        }
+        
+        .branch-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .branch-title {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #d4af37;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        .branch-subtitle {
+            font-size: 1.3rem;
+            color: #e8d5b7;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+        
+        .branch-description {
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 60px;
+            backdrop-filter: blur(4px);
+        }
+        
+        .branch-description h2 {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .branch-description p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e8d5b7;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .branch-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: rgba(212, 175, 55, 0.06);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #d4af37;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .feature-description {
+            color: #e8d5b7;
+            line-height: 1.6;
+        }
+        
+        .supervisors-section {
+            margin-top: 60px;
+        }
+        
+        .supervisors-title {
+            font-size: 2.5rem;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+        
+        .supervisors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .supervisor-card {
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .supervisor-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15);
+        }
+        
+        .supervisor-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #d4af37, #ff6b35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #1a0f08;
+            font-weight: bold;
+        }
+        
+        .supervisor-name {
+            font-size: 1.5rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .supervisor-role {
+            font-size: 1.1rem;
+            color: #e8d5b7;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .supervisor-contact {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .contact-btn {
+            padding: 8px 16px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            color: #e8d5b7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .contact-btn:hover {
+            background: rgba(212, 175, 55, 0.25);
+            border-color: rgba(212, 175, 55, 0.5);
+            color: #d4af37;
+            transform: translateY(-2px);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #d4af37 0%, #ff6b35 100%);
+            color: #1a0f08;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            margin: 20px auto;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .join-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #d4af37 0%, #ff6b35 100%);
+            color: #1a0f08;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 30px auto;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+        
+        .join-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+        
+        .branch-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(212, 175, 55, 0.06);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.12);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #e8d5b7;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        @media (max-width: 768px) {
+            .branch-container {
+                padding: 80px 15px 30px;
+            }
+            
+            .branch-title {
+                font-size: 2.5rem;
+            }
+            
+            .supervisors-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .branch-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="branch-container">
+        <div class="branch-header">
+            <h1 class="branch-title">دوقية بلويد</h1>
+            <p class="branch-subtitle">مركز التفاعل والفعاليات والمنافسات</p>
+            <a href="../index.html" class="back-btn">← العودة للرئيسية</a>
+        </div>
+        
+        <div class="branch-description">
+            <h2>عن دوقية بلويد</h2>
+            <p>دوقية بلويد هي واحدة من أهم فروع مملكة تمبست، وتُعتبر المركز الرئيسي للدردشة والتفاعل بين الأعضاء. تتميز بالأجواء الحيوية والفعاليات المستمرة التي تجعلها وجهة مفضلة للجميع.</p>
+            <p>تشتهر الدوقية بتنظيم الفعاليات الممتعة والمنافسات الشيقة، بالإضافة إلى نظام الترقيات الذي يحفز الأعضاء على المشاركة الفعالة والتطور المستمر. لا تفوت فرصة الانضمام إلى هذه الدوقية النشطة.</p>
+            
+            <div class="branch-stats">
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">تفاعل مستمر</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">أسبوعياً</div>
+                    <div class="stat-label">فعاليات ومنافسات</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">شهرياً</div>
+                    <div class="stat-label">ترقيات وتكريم</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="branch-features">
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3 class="feature-title">دردشة حية</h3>
+                <p class="feature-description">محادثات و interactions مستمرة مع الأعضاء</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3 class="feature-title">منافسات شيقة</h3>
+                <p class="feature-description">مسابقات وتحديات منتظمة بجوائز قيمة</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">فعاليات ممتعة</h3>
+                <p class="feature-description">أحداث وأنشطة ترفيهية وتعليمية</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⬆️</div>
+                <h3 class="feature-title">نظام ترقيات</h3>
+                <p class="feature-description">تطوير وتكريم الأعضاء المتميزين</p>
+            </div>
+        </div>
+        
+        <div class="supervisors-section">
+            <h2 class="supervisors-title">مشرفو دوقية بلويد</h2>
+            <div class="supervisors-grid">
+                <div class="supervisor-card">
+                    <div class="supervisor-avatar">د</div>
+                    <h3 class="supervisor-name">دوق بلويد</h3>
+                    <p class="supervisor-role">المشرف الرئيسي على الدوقية</p>
+                    <div class="supervisor-contact">
+                        <a href="#" class="contact-btn">مراسلة</a>
+                        <a href="#" class="contact-btn">معاينة</a>
+                    </div>
+                </div>
+                <div class="supervisor-card">
+                    <div class="supervisor-avatar">ن</div>
+                    <h3 class="supervisor-name">نائب الدوق</h3>
+                    <p class="supervisor-role">المساعد الأول في إدارة الدوقية</p>
+                    <div class="supervisor-contact">
+                        <a href="#" class="contact-btn">مراسلة</a>
+                        <a href="#" class="contact-btn">معاينة</a>
+                    </div>
+                </div>
+                <div class="supervisor-card">
+                    <div class="supervisor-avatar">م</div>
+                    <h3 class="supervisor-name">منظم الفعاليات</h3>
+                    <p class="supervisor-role">مسؤول عن تخطيط وتنظيم الأحداث</p>
+                    <div class="supervisor-contact">
+                        <a href="#" class="contact-btn">مراسلة</a>
+                        <a href="#" class="contact-btn">معاينة</a>
+                    </div>
+                </div>
+                <div class="supervisor-card">
+                    <div class="supervisor-avatar">م‍‍</div>
+                    <h3 class="supervisor-name">مراقب التفاعل</h3>
+                    <p class="supervisor-role">الإشراف على جودة المحادثات والتفاعل</p>
+                    <div class="supervisor-contact">
+                        <a href="#" class="contact-btn">مراسلة</a>
+                        <a href="#" class="contact-btn">معاينة</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="https://chat.whatsapp.com/HJi4uDgs2CMHhViY5oblqp?mode=gi_t" class="join-btn" target="_blank">انضم إلى دوقية بلويد</a>
+        </div>
+    </div>
+</body>
+</html>

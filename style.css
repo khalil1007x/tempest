@@ -15,6 +15,8 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     will-change: scroll-position;
+    direction: rtl;
+    text-align: right;
 }
 
 /* Floating Navbar */
@@ -31,6 +33,7 @@ body {
     z-index: 1000;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     will-change: transform;
+    direction: rtl;
 }
 
 .nav-container {
@@ -38,12 +41,14 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 40px;
+    direction: rtl;
 }
 
 .nav-center {
     display: flex;
     align-items: center;
     gap: 40px;
+    direction: rtl;
 }
 
 .logo {
@@ -81,10 +86,10 @@ body {
     width: 0;
     height: 2px;
     bottom: -5px;
-    left: 50%;
+    right: 50%;
     background: linear-gradient(90deg, #d4af37, #ff6b35);
     transition: all 0.3s ease;
-    transform: translateX(-50%);
+    transform: translateX(50%);
 }
 
 .nav-links a:hover::after,
@@ -168,6 +173,7 @@ body {
     letter-spacing: -2px;
     opacity: 0.9;
     margin-bottom: 20px;
+    direction: rtl;
 }
 
 .section h2 {
@@ -178,6 +184,7 @@ body {
     opacity: 0.7;
     margin-bottom: 30px;
     text-transform: uppercase;
+    direction: rtl;
 }
 
 .section-info {
@@ -188,6 +195,7 @@ body {
     max-width: 600px;
     margin: 0 auto;
     padding: 0 20px;
+    direction: rtl;
 }
 
 /* Individual Section Colors */
@@ -354,6 +362,24 @@ body {
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+
+.portfolio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(255, 107, 53, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.portfolio-card:hover::before {
+    opacity: 1;
 }
 
 .portfolio-card:hover {
@@ -493,6 +519,37 @@ body {
     line-height: 1.5;
     margin-bottom: 0;
     flex-grow: 1;
+}
+
+.founders-card .founder-title {
+    font-weight: 600;
+    color: #d4af37;
+    margin-bottom: 12px;
+}
+
+/* Founder Traits Styles */
+.founder-traits {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.trait {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: rgba(212, 175, 55, 0.1);
+    color: #d4af37;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    transition: all 0.3s ease;
+}
+
+.trait:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.3);
 }
 
 .founders-card .founder-icon {
