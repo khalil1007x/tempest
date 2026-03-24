@@ -212,10 +212,10 @@ class ThemeToggle {
     applyTheme() {
         if (this.currentTheme === 'light') {
             this.body.classList.add('dark-theme');
-            this.themeIcon.textContent = '🌙';
+            this.themeIcon.textContent = '🪭';
         } else {
             this.body.classList.remove('dark-theme');
-            this.themeIcon.textContent = '☀️';
+            this.themeIcon.textContent = '🪭';
         }
     }
     
@@ -224,16 +224,12 @@ class ThemeToggle {
     }
     
     animateToggle() {
-        // Add rotation animation to the button
-        this.themeToggle.style.transform = 'scale(0.9) rotate(180deg)';
+        // Add press effect to the button
+        this.themeToggle.style.transform = 'scale(0.95)';
         
         setTimeout(() => {
-            this.themeToggle.style.transform = 'scale(1) rotate(360deg)';
+            this.themeToggle.style.transform = 'scale(1)';
         }, 150);
-        
-        setTimeout(() => {
-            this.themeToggle.style.transform = '';
-        }, 300);
     }
 }
 
