@@ -3,18 +3,18 @@
 /* ======================================== */
 
 .neon-music-player {
-    background: linear-gradient(135deg, rgba(45, 24, 16, 0.8) 0%, rgba(74, 44, 26, 0.8) 50%, rgba(26, 15, 8, 0.8) 100%);
+    background: linear-gradient(135deg, rgba(20, 0, 0, 0.9) 0%, rgba(45, 10, 10, 0.9) 50%, rgba(26, 0, 0, 0.9) 100%);
     border: 2px solid transparent;
-    border-image: linear-gradient(45deg, #d4af37, #ff6b35, #d4af37, #ff6b35) 1;
+    border-image: linear-gradient(45deg, #8b0000, #ff3333, #8b0000, #ff3333) 1;
     border-radius: 20px;
     padding: 30px;
     margin: 40px auto;
     max-width: 450px;
     width: 100%;
     box-shadow: 
-        0 0 15px rgba(212, 175, 55, 0.2),
-        0 0 30px rgba(255, 107, 53, 0.1),
-        inset 0 0 10px rgba(212, 175, 55, 0.05);
+        0 0 20px rgba(139, 0, 0, 0.3),
+        0 0 40px rgba(255, 51, 51, 0.15),
+        inset 0 0 15px rgba(139, 0, 0, 0.08);
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(8px);
@@ -29,9 +29,9 @@
     height: 2px;
     background: linear-gradient(90deg, 
         transparent, 
-        rgba(212, 175, 55, 0.8), 
-        rgba(255, 107, 53, 0.8), 
-        rgba(212, 175, 55, 0.8),
+        rgba(139, 0, 0, 0.8), 
+        rgba(255, 51, 51, 0.8), 
+        rgba(139, 0, 0, 0.8),
         transparent);
     animation: neonScan 3s linear infinite;
 }
@@ -47,16 +47,16 @@
     align-items: center;
     margin-bottom: 25px;
     padding-bottom: 15px;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    border-bottom: 1px solid rgba(139, 0, 0, 0.4);
 }
 
 .player-title {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #d4af37;
+    color: #ff3333;
     text-transform: uppercase;
     letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+    text-shadow: 0 0 10px rgba(255, 51, 51, 0.4);
     margin: 0;
 }
 
@@ -64,19 +64,19 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    background: rgba(212, 175, 55, 0.2);
+    background: rgba(139, 0, 0, 0.3);
     padding: 6px 12px;
     border-radius: 20px;
-    border: 1px solid rgba(212, 175, 55, 0.5);
+    border: 1px solid rgba(139, 0, 0, 0.6);
 }
 
 .live-dot {
     width: 8px;
     height: 8px;
-    background: #d4af37;
+    background: #ff3333;
     border-radius: 50%;
     animation: livePulse 1.5s ease-in-out infinite;
-    box-shadow: 0 0 5px rgba(212, 175, 55, 0.6);
+    box-shadow: 0 0 5px rgba(255, 51, 51, 0.6);
 }
 
 @keyframes livePulse {
@@ -86,11 +86,11 @@
 
 .live-text {
     font-size: 0.8rem;
-    color: #d4af37;
+    color: #ff3333;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    text-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
+    text-shadow: 0 0 5px rgba(255, 51, 51, 0.4);
 }
 
 .track-info {
@@ -101,16 +101,16 @@
 .track-name {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #d4af37;
+    color: #ff3333;
     margin: 0 0 8px 0;
     text-transform: uppercase;
     letter-spacing: 1px;
-    text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+    text-shadow: 0 0 8px rgba(255, 51, 51, 0.4);
 }
 
 .artist-name {
     font-size: 1.1rem;
-    color: rgba(232, 213, 183, 0.8);
+    color: rgba(255, 255, 255, 0.7);
     margin: 0;
     font-style: italic;
 }
@@ -126,10 +126,10 @@
 
 .viz-bar {
     width: 4px;
-    background: linear-gradient(to top, #d4af37, #ff6b35, #d4af37);
+    background: linear-gradient(to top, #8b0000, #ff3333, #8b0000);
     border-radius: 2px;
     animation: vizPulse 1s ease-in-out infinite;
-    box-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 5px rgba(139, 0, 0, 0.4);
 }
 
 .viz-bar:nth-child(1) { animation-delay: 0s; height: 20px; }
@@ -153,18 +153,18 @@
 .progress-bar {
     width: 100%;
     height: 8px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 4px;
     overflow: hidden;
     cursor: pointer;
     position: relative;
     margin-bottom: 10px;
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    border: 1px solid rgba(139, 0, 0, 0.3);
 }
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #d4af37, #ff6b35, #d4af37);
+    background: linear-gradient(90deg, #8b0000, #ff3333, #8b0000);
     border-radius: 4px;
     width: 0%;
     transition: width 0.1s ease;
@@ -179,7 +179,7 @@
     bottom: 0;
     background: linear-gradient(90deg, 
         transparent, 
-        rgba(212, 175, 55, 0.4), 
+        rgba(139, 0, 0, 0.5), 
         transparent);
     animation: progressGlow 2s linear infinite;
     transform: translateX(-100%);
@@ -194,7 +194,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 0.9rem;
-    color: rgba(232, 213, 183, 0.8);
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
 }
 
@@ -207,9 +207,9 @@
 }
 
 .control-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    color: #d4af37;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(139, 0, 0, 0.5);
+    color: #ff3333;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -222,10 +222,10 @@
 }
 
 .control-btn:hover {
-    background: rgba(212, 175, 55, 0.15);
-    border-color: rgba(212, 175, 55, 0.6);
+    background: rgba(139, 0, 0, 0.2);
+    border-color: rgba(139, 0, 0, 0.7);
     transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
 }
 
 .control-btn:active {
@@ -240,9 +240,9 @@
 
 .shuffle-btn.active, .repeat-btn.active {
     opacity: 1;
-    background: rgba(212, 175, 55, 0.2);
-    border-color: #d4af37;
-    box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+    background: rgba(139, 0, 0, 0.3);
+    border-color: #ff3333;
+    box-shadow: 0 0 8px rgba(139, 0, 0, 0.5);
 }
 
 .prev-btn, .next-btn {
@@ -253,21 +253,21 @@
 .play-btn {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 107, 53, 0.15));
-    border-color: rgba(212, 175, 55, 0.5);
-    box-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.3), rgba(255, 51, 51, 0.2));
+    border-color: rgba(139, 0, 0, 0.6);
+    box-shadow: 0 0 12px rgba(139, 0, 0, 0.3);
 }
 
 .play-btn:hover {
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(255, 107, 53, 0.2));
-    box-shadow: 0 0 18px rgba(212, 175, 55, 0.3);
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.4), rgba(255, 51, 51, 0.3));
+    box-shadow: 0 0 18px rgba(139, 0, 0, 0.4);
 }
 
 .playlist {
-    background: rgba(26, 15, 8, 0.3);
+    background: rgba(20, 0, 0, 0.4);
     border-radius: 15px;
     padding: 20px;
-    border: 1px solid rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(139, 0, 0, 0.2);
 }
 
 .playlist-header {
@@ -276,13 +276,13 @@
     align-items: center;
     margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    border-bottom: 1px solid rgba(139, 0, 0, 0.4);
 }
 
 .playlist-header h4 {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #d4af37;
+    color: #ff3333;
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -290,7 +290,7 @@
 
 .track-count {
     font-size: 0.8rem;
-    color: rgba(232, 213, 183, 0.7);
+    color: rgba(255, 255, 255, 0.6);
     font-weight: 500;
 }
 
@@ -304,7 +304,7 @@
     display: flex;
     align-items: center;
     padding: 12px 15px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -312,14 +312,13 @@
 }
 
 .playlist-item:hover {
-    background: rgba(212, 175, 55, 0.15);
-    border-color: rgba(212, 175, 55, 0.4);
-    transform: translateX(5px);
+    background: rgba(139, 0, 0, 0.2);
+    border-color: rgba(139, 0, 0, 0.5);
 }
 
 .playlist-item.active {
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 107, 53, 0.1));
-    border-color: rgba(212, 175, 55, 0.5);
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.3), rgba(255, 51, 51, 0.15));
+    border-color: rgba(139, 0, 0, 0.6);
 }
 
 .item-number {
@@ -331,8 +330,8 @@
 }
 
 .playlist-item.active .item-number {
-    color: #d4af37;
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+    color: #ff3333;
+    text-shadow: 0 0 10px rgba(255, 51, 51, 0.6);
 }
 
 .item-info {
@@ -350,8 +349,8 @@
 }
 
 .playlist-item.active .item-name {
-    color: #d4af37;
-    text-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
+    color: #ff3333;
+    text-shadow: 0 0 5px rgba(255, 51, 51, 0.4);
 }
 
 .item-duration {
@@ -360,11 +359,11 @@
 }
 
 .playing-indicator {
-    color: #d4af37;
+    color: #ff3333;
     font-size: 0.8rem;
     opacity: 0;
     transition: opacity 0.3s ease;
-    text-shadow: 0 0 4px rgba(212, 175, 55, 0.4);
+    text-shadow: 0 0 4px rgba(255, 51, 51, 0.4);
 }
 
 .playlist-item.active .playing-indicator {
@@ -375,6 +374,164 @@
 @keyframes indicatorBlink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.3; }
+}
+
+/* ======================================== */
+/*   BROWN THEME FOR MUSIC PLAYER         */
+/* ======================================== */
+
+body.dark-theme .neon-music-player {
+    background: linear-gradient(135deg, rgba(45, 24, 16, 0.8) 0%, rgba(74, 44, 26, 0.8) 50%, rgba(26, 15, 8, 0.8) 100%);
+    border: 2px solid transparent;
+    border-image: linear-gradient(45deg, #d4af37, #ff6b35, #d4af37, #ff6b35) 1;
+    box-shadow: 
+        0 0 15px rgba(212, 175, 55, 0.2),
+        0 0 30px rgba(255, 107, 53, 0.1),
+        inset 0 0 10px rgba(212, 175, 55, 0.05);
+}
+
+body.dark-theme .neon-music-player::before {
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(212, 175, 55, 0.8), 
+        rgba(255, 107, 53, 0.8), 
+        rgba(212, 175, 55, 0.8),
+        transparent);
+    animation: neonScan 3s linear infinite;
+}
+
+body.dark-theme .player-header {
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+body.dark-theme .player-title {
+    color: #d4af37;
+    text-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+}
+
+body.dark-theme .live-indicator {
+    background: rgba(212, 175, 55, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.5);
+}
+
+body.dark-theme .live-dot {
+    background: #d4af37;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+}
+
+body.dark-theme .live-text {
+    color: #d4af37;
+    text-shadow: 0 0 6px rgba(212, 175, 55, 0.4);
+}
+
+body.dark-theme .track-name {
+    color: #d4af37;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+body.dark-theme .artist-name {
+    color: rgba(232, 213, 183, 0.8);
+}
+
+body.dark-theme .viz-bar {
+    background: linear-gradient(to top, #d4af37, #ff6b35, #d4af37);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+}
+
+body.dark-theme .progress-bar {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+body.dark-theme .progress-fill {
+    background: linear-gradient(90deg, #d4af37, #ff6b35, #d4af37);
+}
+
+body.dark-theme .progress-glow {
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(212, 175, 55, 0.4), 
+        transparent);
+}
+
+body.dark-theme .time-display {
+    color: rgba(232, 213, 183, 0.8);
+}
+
+body.dark-theme .control-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #d4af37;
+}
+
+body.dark-theme .control-btn:hover {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+body.dark-theme .shuffle-btn.active, 
+body.dark-theme .repeat-btn.active {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: #d4af37;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+}
+
+body.dark-theme .play-btn {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 107, 53, 0.15));
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+body.dark-theme .play-btn:hover {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(255, 107, 53, 0.2));
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+body.dark-theme .playlist {
+    background: rgba(26, 15, 8, 0.3);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+body.dark-theme .playlist-header {
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+body.dark-theme .playlist-header h4 {
+    color: #d4af37;
+}
+
+body.dark-theme .track-count {
+    color: rgba(232, 213, 183, 0.7);
+}
+
+body.dark-theme .playlist-item {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+body.dark-theme .playlist-item:hover {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: rgba(212, 175, 55, 0.4);
+}
+
+body.dark-theme .playlist-item.active {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 107, 53, 0.1));
+    border-color: rgba(212, 175, 55, 0.5);
+}
+
+body.dark-theme .playlist-item.active .item-number {
+    color: #d4af37;
+    text-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+}
+
+body.dark-theme .playlist-item.active .item-name {
+    color: #d4af37;
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+}
+
+body.dark-theme .playing-indicator {
+    color: #d4af37;
+    text-shadow: 0 0 6px rgba(212, 175, 55, 0.4);
 }
 
 /* Responsive Design */

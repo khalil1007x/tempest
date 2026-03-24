@@ -10,8 +10,8 @@ html {
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, #2d1810 0%, #4a2c1a 50%, #1a0f08 100%);
-    color: #f8e5d8;
+    background: linear-gradient(135deg, #0a0000 0%, #1a0000 25%, #2d0a0a 50%, #1a0000 75%, #0a0000 100%);
+    color: #e0e0e0;
     line-height: 1.6;
     overflow-x: hidden;
     will-change: scroll-position;
@@ -25,13 +25,13 @@ body {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(45, 24, 16, 0.9);
+    background: rgba(20, 0, 0, 0.95);
     backdrop-filter: blur(8px);
     border-radius: 50px;
     padding: 12px 30px;
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    border: 1px solid rgba(139, 0, 0, 0.3);
     z-index: 1000;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 16px rgba(139, 0, 0, 0.3);
     will-change: transform;
     direction: rtl;
 }
@@ -54,9 +54,9 @@ body {
 .logo {
     font-size: 1.5rem;
     font-weight: 800;
-    color: #d4af37;
+    color: #ff3333;
     text-decoration: none;
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+    text-shadow: 0 0 10px rgba(255, 51, 51, 0.4);
 }
 
 .nav-links {
@@ -66,7 +66,7 @@ body {
 }
 
 .nav-links a {
-    color: #e8d5b7;
+    color: #e0e0e0;
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
@@ -76,8 +76,8 @@ body {
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: #d4af37;
-    text-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
+    color: #ff3333;
+    text-shadow: 0 0 5px rgba(255, 51, 51, 0.4);
 }
 
 .nav-links a::after {
@@ -87,7 +87,7 @@ body {
     height: 2px;
     bottom: -5px;
     right: 50%;
-    background: linear-gradient(90deg, #d4af37, #ff6b35);
+    background: linear-gradient(90deg, #ff3333, #ff6666);
     transition: all 0.3s ease;
     transform: translateX(50%);
 }
@@ -119,38 +119,215 @@ body {
     }
 
 .login-btn {
-    color: #e8d5b7;
-    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #e0e0e0;
+    border: 1px solid rgba(139, 0, 0, 0.4);
 }
 
 .login-btn:hover {
-    color: #d4af37;
-    border-color: rgba(212, 175, 55, 0.6);
-    text-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+    color: #ff3333;
+    border-color: rgba(139, 0, 0, 0.6);
+    text-shadow: 0 0 5px rgba(255, 51, 51, 0.3);
 }
 
 .signup-btn {
-    background: linear-gradient(135deg, #d4af37 0%, #ff6b35 100%);
-    color: #1a0f08;
+    background: linear-gradient(135deg, #ff3333 0%, #ff6666 100%);
+    color: #000000;
     white-space: nowrap;
-    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 2px 8px rgba(139, 0, 0, 0.2);
     transition: all 0.2s ease;
 }
 
 .signup-btn:hover {
-    background: linear-gradient(135deg, #e5c547 0%, #ff7b4d 100%);
+    background: linear-gradient(135deg, #ff4444 0%, #ff7777 100%);
     transform: translateY(-1px);
-    box-shadow: 0 3px 12px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 3px 12px rgba(139, 0, 0, 0.3);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(139, 0, 0, 0.15);
+    border: 2px solid rgba(139, 0, 0, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 3px;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle:hover {
+    background: rgba(139, 0, 0, 0.25);
+    border-color: rgba(139, 0, 0, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.theme-icon {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.theme-toggle:hover .theme-icon {
+    transform: rotate(20deg) scale(1.1);
+}
+
+/* Dark Theme Styles - Now this is the BROWN theme (when dark-theme class is added) */
+body.dark-theme {
+    background: linear-gradient(135deg, #2d1810 0%, #4a2c1a 50%, #1a0f08 100%);
+    color: #f8e5d8;
+}
+
+body.dark-theme .navbar {
+    background: rgba(45, 24, 16, 0.9);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+body.dark-theme .nav-links a {
+    color: #e8d5b7;
+}
+
+body.dark-theme .nav-links a:hover,
+body.dark-theme .nav-links a.active {
+    color: #d4af37;
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+}
+
+body.dark-theme .logo {
+    color: #d4af37;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+body.dark-theme .section {
+    background: linear-gradient(135deg, #2d1810 0%, #4a2c1a 50%, #1a0f08 100%) !important;
+}
+
+body.dark-theme .stat-card,
+body.dark-theme .founders-card,
+body.dark-theme .portfolio-card {
+    background: rgba(212, 175, 55, 0.08);
+    border-color: rgba(212, 175, 55, 0.15);
+}
+
+body.dark-theme .stat-card:hover,
+body.dark-theme .founders-card:hover,
+body.dark-theme .portfolio-card:hover {
+    background: rgba(212, 175, 55, 0.12);
+    border-color: rgba(212, 175, 55, 0.25);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.15);
+}
+
+body.dark-theme .stat-number,
+body.dark-theme .founders-card h3,
+body.dark-theme .portfolio-content h3 {
+    color: #d4af37;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+body.dark-theme .stat-label,
+body.dark-theme .founders-card p,
+body.dark-theme .portfolio-content p {
+    color: #e8d5b7;
+}
+
+body.dark-theme .trait,
+body.dark-theme .tag {
+    background: rgba(212, 175, 55, 0.15);
+    color: #d4af37;
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+body.dark-theme .trait:hover,
+body.dark-theme .tag:hover {
+    background: rgba(212, 175, 55, 0.25);
+    border-color: rgba(212, 175, 55, 0.4);
+}
+
+body.dark-theme .chaos-button {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+body.dark-theme .chaos-button:hover {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(255, 107, 53, 0.2) 100%);
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 3px 15px rgba(212, 175, 55, 0.2);
+}
+
+body.dark-theme .footer-container {
+    background: rgba(45, 24, 16, 0.8);
+    border-color: rgba(212, 175, 55, 0.2);
+}
+
+body.dark-theme .footer-section h3 {
+    color: #d4af37;
+}
+
+body.dark-theme .footer-section a {
+    color: #e8d5b7;
+}
+
+body.dark-theme .footer-section a:hover {
+    color: #d4af37;
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+}
+
+body.dark-theme .theme-toggle {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+body.dark-theme .theme-toggle:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
 }
 
 /* Mobile Menu Toggle */
 .menu-toggle {
     display: none;
-    background: none;
-    border: none;
+    background: rgba(139, 0, 0, 0.15);
+    border: 2px solid rgba(139, 0, 0, 0.3);
     color: #ffffff;
     font-size: 1.5rem;
     cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.menu-toggle:hover {
+    background: rgba(139, 0, 0, 0.25);
+    border-color: rgba(139, 0, 0, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+}
+
+.menu-toggle:active {
+    transform: scale(0.95);
+}
+
+/* Dark theme styles for menu toggle */
+body.dark-theme .menu-toggle {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.3);
+    color: #f8e5d8;
+}
+
+body.dark-theme .menu-toggle:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
 }
 
 /* Section Styling */
@@ -189,7 +366,7 @@ body {
 
 .section-info {
     font-size: 1.1rem;
-    color: #999;
+    color: #cccccc;
     font-style: italic;
     text-align: center;
     max-width: 600px;
@@ -200,11 +377,11 @@ body {
 
 /* Individual Section Colors */
 #home {
-    background: linear-gradient(135deg, #2d1810 0%, #4a2c1a 50%, #1a0f08 100%);
+    background: linear-gradient(135deg, #0a0000 0%, #1a0000 25%, #2d0a0a 50%, #1a0000 75%, #0a0000 100%);
 }
 
 #about {
-    background: linear-gradient(135deg, #4a2c1a 0%, #2d1810 50%, #1a0f08 100%);
+    background: linear-gradient(135deg, #1a0000 0%, #0a0000 25%, #2d0a0a 50%, #0a0000 75%, #1a0000 100%);
 }
 
 /* About Section Styles */
@@ -217,8 +394,8 @@ body {
 }
 
 .stat-card {
-    background: rgba(212, 175, 55, 0.08);
-    border: 1px solid rgba(212, 175, 55, 0.15);
+    background: rgba(139, 0, 0, 0.08);
+    border: 1px solid rgba(139, 0, 0, 0.15);
     border-radius: 15px;
     padding: 25px;
     text-align: center;
@@ -229,16 +406,16 @@ body {
 
 .stat-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
-    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);
+    border-color: rgba(139, 0, 0, 0.3);
 }
 
 .stat-number {
     font-size: 2.5rem;
     font-weight: 900;
-    color: #d4af37;
+    color: #ff3333;
     margin-bottom: 10px;
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    text-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
     position: relative;
     display: inline-block;
 }
@@ -277,7 +454,7 @@ body {
 
 .stat-label {
     font-size: 0.9rem;
-    color: #e8d5b7;
+    color: #cccccc;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -291,8 +468,8 @@ body {
 }
 
 .about-card {
-    background: rgba(212, 175, 55, 0.06);
-    border: 1px solid rgba(212, 175, 55, 0.12);
+    background: rgba(139, 0, 0, 0.06);
+    border: 1px solid rgba(139, 0, 0, 0.12);
     border-radius: 20px;
     padding: 30px;
     text-align: center;
@@ -304,8 +481,8 @@ body {
 
 .about-card:hover {
     transform: translateY(-3px) scale(1.01);
-    box-shadow: 0 6px 16px rgba(212, 175, 55, 0.12);
-    border-color: rgba(212, 175, 55, 0.25);
+    box-shadow: 0 6px 16px rgba(139, 0, 0, 0.12);
+    border-color: rgba(139, 0, 0, 0.25);
 }
 
 .about-icon {
@@ -324,7 +501,7 @@ body {
 .about-card h3 {
     font-size: 1.3rem;
     font-weight: 700;
-    color: #d4af37;
+    color: #ff3333;
     margin-bottom: 15px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -332,13 +509,13 @@ body {
 
 .about-card p {
     font-size: 0.95rem;
-    color: #e8d5b7;
+    color: #cccccc;
     line-height: 1.6;
     margin-bottom: 0;
 }
 
 #services {
-    background: linear-gradient(135deg, #1a0f08 0%, #2d1810 50%, #4a2c1a 100%);
+    background: linear-gradient(135deg, #0a0000 0%, #1a0000 25%, #2d0a0a 50%, #1a0000 75%, #0a0000 100%);
 }
 
 /* Portfolio Cards Styles */
@@ -353,8 +530,8 @@ body {
 .portfolio-card {
     width: 380px;
     height: 480px;
-    background: rgba(212, 175, 55, 0.06);
-    border: 1px solid rgba(212, 175, 55, 0.12);
+    background: rgba(139, 0, 0, 0.06);
+    border: 1px solid rgba(139, 0, 0, 0.12);
     border-radius: 20px;
     overflow: hidden;
     backdrop-filter: blur(4px);
@@ -372,7 +549,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(255, 107, 53, 0.1));
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.1), rgba(255, 51, 51, 0.1));
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
@@ -384,8 +561,8 @@ body {
 
 .portfolio-card:hover {
     transform: translateY(-5px) scale(1.01);
-    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15);
-    border-color: rgba(212, 175, 55, 0.25);
+    box-shadow: 0 8px 20px rgba(139, 0, 0, 0.15);
+    border-color: rgba(139, 0, 0, 0.25);
 }
 
 .portfolio-image {
@@ -419,7 +596,7 @@ body {
 .portfolio-content h3 {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #d4af37;
+    color: #ff3333;
     margin-bottom: 15px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -428,7 +605,7 @@ body {
 
 .portfolio-content p {
     font-size: 0.95rem;
-    color: #e8d5b7;
+    color: #cccccc;
     line-height: 1.6;
     margin-bottom: 20px;
     flex-grow: 1;
@@ -442,28 +619,28 @@ body {
 
 .tag {
     padding: 6px 12px;
-    background: rgba(212, 175, 55, 0.15);
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: rgba(139, 0, 0, 0.15);
+    border: 1px solid rgba(139, 0, 0, 0.3);
     border-radius: 15px;
     font-size: 0.75rem;
-    color: #f8e5d8;
+    color: #e0e0e0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
 }
 
 .portfolio-card:hover .tag {
-    background: rgba(212, 175, 55, 0.25);
-    border-color: rgba(212, 175, 55, 0.5);
-    color: #f8e5d8;
+    background: rgba(139, 0, 0, 0.25);
+    border-color: rgba(139, 0, 0, 0.5);
+    color: #e0e0e0;
 }
 
 #portfolio {
-    background: linear-gradient(135deg, #2d1810 0%, #1a0f08 50%, #4a2c1a 100%);
+    background: linear-gradient(135deg, #0a0000 0%, #1a0000 25%, #2d0a0a 50%, #1a0000 75%, #0a0000 100%);
 }
 
 #contact {
-    background: linear-gradient(135deg, #1a0f08 0%, #2d1810 50%, #4a2c1a 100%);
+    background: linear-gradient(135deg, #1a0000 0%, #0a0000 25%, #2d0a0a 50%, #0a0000 75%, #1a0000 100%);
 }
 
 /* Founders Grid Styles */
@@ -480,8 +657,8 @@ body {
 }
 
 .founders-card {
-    background: rgba(212, 175, 55, 0.06);
-    border: 1px solid rgba(212, 175, 55, 0.12);
+    background: rgba(139, 0, 0, 0.06);
+    border: 1px solid rgba(139, 0, 0, 0.12);
     border-radius: 20px;
     padding: 30px 25px;
     text-align: center;
@@ -499,14 +676,14 @@ body {
 
 .founders-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(212, 175, 55, 0.12);
-    border-color: rgba(212, 175, 55, 0.25);
+    box-shadow: 0 6px 16px rgba(139, 0, 0, 0.12);
+    border-color: rgba(139, 0, 0, 0.25);
 }
 
 .founders-card h3 {
     font-size: 1.3rem;
     margin-bottom: 12px;
-    color: #d4af37;
+    color: #ff3333;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -515,7 +692,7 @@ body {
 
 .founders-card p {
     font-size: 0.9rem;
-    color: #e8d5b7;
+    color: #cccccc;
     line-height: 1.5;
     margin-bottom: 0;
     flex-grow: 1;
@@ -523,7 +700,7 @@ body {
 
 .founders-card .founder-title {
     font-weight: 600;
-    color: #d4af37;
+    color: #ff3333;
     margin-bottom: 12px;
 }
 
@@ -541,15 +718,15 @@ body {
     border-radius: 20px;
     font-size: 0.75rem;
     font-weight: 500;
-    background: rgba(212, 175, 55, 0.1);
-    color: #d4af37;
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    background: rgba(139, 0, 0, 0.1);
+    color: #ff6666;
+    border: 1px solid rgba(139, 0, 0, 0.2);
     transition: all 0.3s ease;
 }
 
 .trait:hover {
-    background: rgba(212, 175, 55, 0.2);
-    border-color: rgba(212, 175, 55, 0.3);
+    background: rgba(139, 0, 0, 0.2);
+    border-color: rgba(139, 0, 0, 0.3);
 }
 
 .founders-card .founder-icon {
@@ -584,22 +761,22 @@ body {
     position: relative;
     width: 200px;
     height: 60px;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(255, 107, 53, 0.15) 100%);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.15) 0%, rgba(255, 51, 51, 0.15) 100%);
     cursor: pointer;
     margin: 30px auto;
     display: block;
     border-radius: 25px;
     overflow: hidden;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.15);
+    box-shadow: 0 2px 8px rgba(139, 0, 0, 0.15);
 }
 
 .chaos-button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 3px 12px rgba(212, 175, 55, 0.2);
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(255, 107, 53, 0.2) 100%);
-    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 3px 12px rgba(139, 0, 0, 0.2);
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.2) 0%, rgba(255, 51, 51, 0.2) 100%);
+    border-color: rgba(139, 0, 0, 0.5);
 }
 
 .chaos-button:active {
@@ -655,8 +832,8 @@ body {
 }
 
 .footer-container {
-    background: rgba(45, 24, 16, 0.7);
-    border: 1px solid rgba(212, 175, 55, 0.15);
+    background: rgba(20, 0, 0, 0.8);
+    border: 1px solid rgba(139, 0, 0, 0.2);
     border-radius: 20px;
     padding: 40px;
     max-width: 800px;
@@ -675,12 +852,12 @@ body {
     font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: 15px;
-    color: #d4af37;
+    color: #ff3333;
 }
 
 .footer-section p,
 .footer-section a {
-    color: #e8d5b7;
+    color: #cccccc;
     text-decoration: none;
     margin-bottom: 8px;
     display: block;
@@ -689,23 +866,23 @@ body {
 }
 
 .footer-section a:hover {
-    color: #d4af37;
-    text-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+    color: #ff3333;
+    text-shadow: 0 0 5px rgba(255, 51, 51, 0.3);
 }
 
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
-    color: #e8d5b7;
+    border-top: 1px solid rgba(139, 0, 0, 0.2);
+    color: #cccccc;
     font-size: 0.85rem;
 }
 
 .footer-bottom p:last-child {
-    color: #d4af37;
+    color: #ff3333;
     font-weight: 600;
     margin-top: 5px;
-    text-shadow: 0 0 5px rgba(212, 175, 55, 0.2);
+    text-shadow: 0 0 5px rgba(255, 51, 51, 0.2);
 }
 
 /* Responsive Design */
@@ -765,21 +942,26 @@ body {
     
     .menu-toggle {
         display: block;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(139, 0, 0, 0.15);
+        border: 2px solid rgba(139, 0, 0, 0.3);
         color: #ffffff;
         font-size: 1.5rem;
         cursor: pointer;
         padding: 8px 12px;
-        border-radius: 8px;
+        border-radius: 12px;
         transition: all 0.3s ease;
         z-index: 1000;
     }
     
     .menu-toggle:hover {
-        background: rgba(255, 255, 255, 0.2);
-        border-color: rgba(255, 255, 255, 0.3);
+        background: rgba(139, 0, 0, 0.25);
+        border-color: rgba(139, 0, 0, 0.5);
         transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+    }
+    
+    .theme-toggle {
+        margin-left: 2px;
     }
     
     .section h1 {

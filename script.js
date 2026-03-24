@@ -174,6 +174,75 @@ function animateCounters() {
 document.addEventListener('DOMContentLoaded', animateCounters);
 
 // ========================================
+//   THEME TOGGLE FUNCTIONALITY
+// ========================================
+
+class ThemeToggle {
+    constructor() {
+        this.themeToggle = document.getElementById('themeToggle');
+        this.themeIcon = document.querySelector('.theme-icon');
+        this.body = document.body;
+        
+        // Load saved theme or default to red (no dark-theme class)
+        this.currentTheme = localStorage.getItem('theme') || 'red';
+        this.applyTheme();
+        
+        this.attachEventListeners();
+    }
+    
+    attachEventListeners() {
+        this.themeToggle.addEventListener('click', () => this.toggleTheme());
+        
+        // Add keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 't' && e.ctrlKey) {
+                e.preventDefault();
+                this.toggleTheme();
+            }
+        });
+    }
+    
+    toggleTheme() {
+        this.currentTheme = this.currentTheme === 'red' ? 'light' : 'red';
+        this.applyTheme();
+        this.saveTheme();
+        this.animateToggle();
+    }
+    
+    applyTheme() {
+        if (this.currentTheme === 'light') {
+            this.body.classList.add('dark-theme');
+            this.themeIcon.textContent = '🌙';
+        } else {
+            this.body.classList.remove('dark-theme');
+            this.themeIcon.textContent = '☀️';
+        }
+    }
+    
+    saveTheme() {
+        localStorage.setItem('theme', this.currentTheme);
+    }
+    
+    animateToggle() {
+        // Add rotation animation to the button
+        this.themeToggle.style.transform = 'scale(0.9) rotate(180deg)';
+        
+        setTimeout(() => {
+            this.themeToggle.style.transform = 'scale(1) rotate(360deg)';
+        }, 150);
+        
+        setTimeout(() => {
+            this.themeToggle.style.transform = '';
+        }, 300);
+    }
+}
+
+// Initialize theme toggle when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new ThemeToggle();
+});
+
+// ========================================
 //   VERTICAL MUSIC PLAYER FUNCTIONALITY
 // ========================================
 
