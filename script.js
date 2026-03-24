@@ -318,7 +318,7 @@ class NeonMusicPlayer {
             
             // Load single track only
             this.tracks = [
-                { name: "House of Balloons", artist: "House of Balloons", duration: "4:12", url: musicDirectory + "house of balloons.mp3" }
+                { name: "Bury The Light", artist: "Bury The Light", duration: "4:12", url: musicDirectory + "bury the light.mp3" }
             ];
             
             this.updateTrackInfo();
@@ -363,7 +363,7 @@ class NeonMusicPlayer {
             itemEl.innerHTML = `
                 <span class="item-number">${index + 1}</span>
                 <div class="item-info">
-                    <span class="item-name">House of Balloons</span>
+                    <span class="item-name">Bury The Light</span>
                     <span class="item-duration">${track.duration}</span>
                 </div>
                 <span class="playing-indicator">▶</span>
@@ -460,7 +460,7 @@ class NeonMusicPlayer {
                 }
                 
                 // Always play the same track
-                const audio = new Audio('media/music/house of balloons.mp3');
+                const audio = new Audio('media/music/bury the light.mp3');
                 audio.volume = 0.7;
                 
                 audio.addEventListener('ended', () => {
