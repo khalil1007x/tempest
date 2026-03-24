@@ -1,3 +1,88 @@
+// Browser compatibility and device detection
+(function() {
+    'use strict';
+    
+    // Feature detection
+    const features = {
+        touch: 'ontouchstart' in window || navigator.maxTouchPoints > 0,
+        webAudio: !!(window.AudioContext || window.webkitAudioContext),
+        webGL: !!window.WebGLRenderingContext,
+        localStorage: !!window.localStorage,
+        serviceWorker: 'serviceWorker' in navigator,
+        push: 'PushManager' in window,
+        notifications: 'Notification' in window
+    };
+    
+    // Browser detection
+    const browsers = {
+        ie: /MSIE|Trident/.test(navigator.userAgent),
+        firefox: /Firefox/.test(navigator.userAgent),
+        chrome: /Chrome/.test(navigator.userAgent) && !/Edg/.test(navigator.userAgent),
+        edge: /Edg/.test(navigator.userAgent),
+        safari: /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent),
+        mobile: /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/.test(navigator.userAgent)
+    };
+    
+    // Add classes to HTML for CSS targeting
+    const html = document.documentElement;
+    Object.keys(features).forEach(feature => {
+        if (features[feature]) {
+            html.classList.add(`has-${feature}`);
+        } else {
+            html.classList.add(`no-${feature}`);
+        }
+    });
+    
+    Object.keys(browsers).forEach(browser => {
+        if (browsers[browser]) {
+            html.classList.add(browser);
+        }
+    });
+    
+    // Device-specific optimizations
+    if (browsers.mobile) {
+        html.classList.add('mobile-device');
+        
+        // Optimize for mobile
+        if (features.touch) {
+            html.classList.add('touch-enabled');
+            
+            // Add touch-specific event handling
+            document.addEventListener('touchstart', function() {}, { passive: true });
+            document.addEventListener('touchmove', function() {}, { passive: true });
+        }
+    }
+    
+    // Performance optimizations
+    if ('requestIdleCallback' in window) {
+        window.requestIdleCallback = requestIdleCallback;
+    } else {
+        // Fallback for browsers without requestIdleCallback
+        window.requestIdleCallback = function(callback) {
+            const start = Date.now();
+            return setTimeout(function() {
+                callback({
+                    didTimeout: false,
+                    timeRemaining: function() {
+                        return Math.max(0, 50 - (Date.now() - start));
+                    }
+                });
+            }, 1);
+        };
+    }
+    
+    // Console logging for debugging
+    console.log('Browser Info:', {
+        userAgent: navigator.userAgent,
+        features: features,
+        browsers: browsers,
+        viewport: {
+            width: window.innerWidth,
+            height: window.innerHeight
+        }
+    });
+})();
+
 // Active navigation state management
 const navLinks = document.querySelectorAll('.nav-links a');
 const sections = document.querySelectorAll('.section');
@@ -255,6 +340,8 @@ class NeonMusicPlayer {
         this.currentAudio = null;
         this.hasInteracted = false;
         this.videoAudio = null;
+        this.autoPlayEnabled = true; // تفعيل التشغيل التلقائي
+        this.isInitialized = false; // منع التهيئة المتعددة
         
         this.initializeElements();
         this.loadMusicFiles();
@@ -263,19 +350,69 @@ class NeonMusicPlayer {
         this.setupVideoAudio();
         this.setupInteractionDetection();
         
-        // Auto-play after user interaction
-        if (this.hasInteracted) {
-            setTimeout(() => {
-                this.play();
-                console.log('Auto-playing first track after user interaction');
-            }, 1000);
-        } else {
-            console.log('Waiting for user interaction before auto-playing');
-            setTimeout(() => {
-                this.play();
-                console.log('Attempting immediate auto-play');
-            }, 500);
+        // تشغيل فوري بدون انتظار تفاعل المستخدم
+        if (!this.isInitialized) {
+            this.isInitialized = true;
+            // محاولة التشغيل الفوري
+            this.attemptImmediatePlay();
         }
+    }
+    
+    attemptImmediatePlay() {
+        console.log('بدء التشغيل الفوري...');
+        
+        // الانتظار قليلاً ثم التشغيل
+        setTimeout(() => {
+            const video = document.getElementById('videoAudio');
+            if (video) {
+                console.log('وجد عنصر الفيديو، جاري التشغيل...');
+                video.volume = 0.7;
+                
+                // محاولة التشغيل
+                video.play().then(() => {
+                    console.log('✅ الأغنية تعمل بنجاح!');
+                    this.isPlaying = true;
+                    this.hasInteracted = true;
+                    this.videoAudio = video;
+                    this.startProgressTracking();
+                    this.animateVisualizer(true);
+                    
+                    // تحديث الزر
+                    if (this.playBtn) {
+                        this.playBtn.innerHTML = `<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+                    }
+                }).catch(e => {
+                    console.log('❌ فشل التشغيل الأولي:', e);
+                    
+                    // محاولة مع muted
+                    video.muted = true;
+                    video.play().then(() => {
+                        console.log('✅ الأغنية تعمل مع muted، جاري unmute...');
+                        setTimeout(() => {
+                            video.muted = false;
+                            console.log('✅ تم unmute بنجاح');
+                        }, 100);
+                        
+                        this.isPlaying = true;
+                        this.hasInteracted = true;
+                        this.videoAudio = video;
+                        this.startProgressTracking();
+                        this.animateVisualizer(true);
+                        
+                        if (this.playBtn) {
+                            this.playBtn.innerHTML = `<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+                        }
+                    }).catch(e2 => {
+                        console.log('❌ فشل التشغيل مع muted:', e2);
+                        // استخدام الصوت العادي
+                        this.playRegularAudio();
+                    });
+                });
+            } else {
+                console.log('❌ لم يتم العثور على عنصر الفيديو');
+                this.playRegularAudio();
+            }
+        }, 100);
     }
     
     initializeElements() {
@@ -390,6 +527,9 @@ class NeonMusicPlayer {
     play() {
         if (this.isPlaying) return Promise.resolve();
         
+        // إيقاف جميع الأصوات الحالية قبل التشغيل الجديد
+        this.stopAllAudio();
+        
         // Update live indicator
         if (this.liveDot) {
             this.liveDot.style.animationPlayState = 'running';
@@ -407,20 +547,89 @@ class NeonMusicPlayer {
         // Start visualizer
         this.animateVisualizer(true);
         
-        if (this.videoAudio) {
-            return this.videoAudio.play().then(() => {
-                console.log('Video audio playing successfully');
+        // Resume from current position if audio exists
+        if (this.currentAudio && this.currentTime > 0) {
+            // Resume existing audio from current position
+            this.currentAudio.currentTime = this.currentTime;
+            return this.currentAudio.play().then(() => {
+                console.log('Resumed audio from position:', this.currentTime);
                 this.isPlaying = true;
-                this.startProgressSimulation();
+                this.startProgressTracking();
             }).catch(e => {
-                console.log('Video audio play failed:', e);
+                console.log('Resume failed:', e);
+                return this.playRegularAudio();
+            });
+        } else if (this.videoAudio && !this.videoAudio.paused && this.currentTime > 0) {
+            // Resume video audio from current position
+            this.videoAudio.currentTime = this.currentTime;
+            return this.videoAudio.play().then(() => {
+                console.log('Resumed video audio from position:', this.currentTime);
+                this.isPlaying = true;
+                this.startProgressTracking();
+            }).catch(e => {
+                console.log('Video audio resume failed:', e);
                 return this.playRegularAudio();
             });
         } else {
+            // Start new playback
             return this.playRegularAudio();
         }
         
         this.hasInteracted = true;
+    }
+    
+    stopAllAudio() {
+        console.log('إيقاف جميع الأصوات الحالية...');
+        
+        // إيقاف الصوت العادي
+        if (this.currentAudio) {
+            try {
+                this.currentAudio.pause();
+                this.currentAudio.currentTime = 0;
+                this.currentAudio.src = '';
+                this.currentAudio = null;
+                console.log('تم إيقاف الصوت العادي');
+            } catch (e) {
+                console.log('خطأ في إيقاف الصوت العادي:', e);
+            }
+        }
+        
+        // إيقاف صوت الفيديو
+        if (this.videoAudio) {
+            try {
+                this.videoAudio.pause();
+                this.videoAudio.currentTime = 0;
+                console.log('تم إيقاف صوت الفيديو');
+            } catch (e) {
+                console.log('خطأ في إيقاف صوت الفيديو:', e);
+            }
+        }
+        
+        // إيقاف تتبع التقدم
+        this.stopProgressTracking();
+        
+        // إيقاف المؤثرات البصرية
+        this.animateVisualizer(false);
+        
+        // تحديث حالة التشغيل
+        this.isPlaying = false;
+        this.currentTime = 0;
+        
+        // تحديث زر التشغيل
+        if (this.playBtn) {
+            this.playBtn.innerHTML = `
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            `;
+        }
+        
+        // تحديث مؤشر التشغيل المباشر
+        if (this.liveDot) {
+            this.liveDot.style.animationPlayState = 'paused';
+        }
+        
+        console.log('تم إيقاف جميع الأصوات بنجاح');
     }
     
     pause() {
@@ -440,34 +649,71 @@ class NeonMusicPlayer {
             `;
         }
         
-        this.stopProgressSimulation();
-        this.stopAudioFile();
+        this.stopProgressTracking();
         this.animateVisualizer(false);
+        
+        // إيقاف جميع الأصوات مع الحفاظ على الموضع
+        if (this.currentAudio && !this.currentAudio.paused) {
+            this.currentAudio.pause();
+            console.log('Paused audio at position:', this.currentTime);
+        }
         
         if (this.videoAudio && !this.videoAudio.paused) {
             this.videoAudio.pause();
+            console.log('Paused video audio at position:', this.currentTime);
         }
     }
     
     playRegularAudio() {
         return new Promise((resolve, reject) => {
             try {
-                // Stop current audio if playing
-                if (this.currentAudio) {
-                    this.currentAudio.pause();
-                    this.currentAudio.src = '';
-                    this.currentAudio = null;
+                // إيقاف جميع الأصوات الحالية أولاً
+                this.stopAllAudio();
+                
+                // If we have existing audio and just want to resume
+                if (this.currentAudio && this.currentTime > 0 && this.currentTime < this.duration) {
+                    console.log('Resuming existing audio from position:', this.currentTime);
+                    this.currentAudio.currentTime = this.currentTime;
+                    this.currentAudio.play().then(() => {
+                        this.isPlaying = true;
+                        if (this.playBtn) {
+                            this.playBtn.innerHTML = `
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                </svg>
+                            `;
+                        }
+                        this.startProgressTracking();
+                        resolve();
+                    }).catch(e => {
+                        console.log('Resume failed:', e);
+                        reject(e);
+                    });
+                    return;
                 }
                 
-                // Always play the same track
+                // Create new audio only if needed
                 const audio = new Audio('media/music/bury the light.mp3');
                 audio.volume = 0.7;
                 
+                audio.addEventListener('loadedmetadata', () => {
+                    this.duration = audio.duration;
+                    this.totalTimeEl.textContent = this.formatTime(audio.duration);
+                });
+                
+                audio.addEventListener('timeupdate', () => {
+                    if (this.isPlaying && this.currentAudio === audio) {
+                        this.currentTime = audio.currentTime;
+                        this.updateProgress();
+                    }
+                });
+                
                 audio.addEventListener('ended', () => {
                     console.log('Track ended, replaying same track');
-                    // Replay the same track
+                    // Reset to beginning and replay
                     this.currentTime = 0;
                     this.updateProgress();
+                    audio.currentTime = 0;
                     audio.play();
                 });
                 
@@ -483,8 +729,13 @@ class NeonMusicPlayer {
                     }
                 });
                 
+                // Set initial position if we have one
+                if (this.currentTime > 0) {
+                    audio.currentTime = this.currentTime;
+                }
+                
                 audio.play().then(() => {
-                    console.log('Track playing successfully');
+                    console.log('Track playing successfully from position:', this.currentTime);
                     this.currentAudio = audio;
                     this.isPlaying = true;
                     if (this.playBtn) {
@@ -494,7 +745,7 @@ class NeonMusicPlayer {
                             </svg>
                         `;
                     }
-                    this.startProgressSimulation();
+                    this.startProgressTracking();
                     resolve();
                 }).catch(e => {
                     console.log('Audio play failed:', e);
@@ -559,7 +810,7 @@ class NeonMusicPlayer {
         this.updatePlaylistActive();
         
         if (this.isPlaying) {
-            this.stopProgressSimulation();
+            this.stopProgressTracking();
             this.playRegularAudio().catch(e => {
                 console.error('Error loading track:', e);
                 this.isPlaying = false;
@@ -585,18 +836,20 @@ class NeonMusicPlayer {
     seekTo(event) {
         const rect = this.progressBar.getBoundingClientRect();
         const percent = (event.clientX - rect.left) / rect.width;
-        this.currentTime = percent * this.duration;
+        const newTime = percent * this.duration;
+        
+        this.currentTime = newTime;
         this.updateProgress();
         
         if (this.currentAudio) {
-            this.currentAudio.currentTime = this.currentTime;
+            this.currentAudio.currentTime = newTime;
+        } else if (this.videoAudio) {
+            this.videoAudio.currentTime = newTime;
         }
     }
     
     stopProgressSimulation() {
-        if (this.progressInterval) {
-            clearInterval(this.progressInterval);
-        }
+        this.stopProgressTracking();
     }
     
     updateProgress() {
@@ -625,22 +878,51 @@ class NeonMusicPlayer {
         });
     }
     
-    startProgressSimulation() {
+    startProgressTracking() {
+        this.stopProgressTracking();
+        
+        // التحقق من وجود عنصر صوت نشط
+        const audioElement = this.currentAudio || this.videoAudio;
+        if (!audioElement) {
+            console.log('❌ لا يوجد عنصر صوت نشط');
+            return;
+        }
+        
+        console.log('✅ بدء تتبع التقدم للعنصر:', audioElement);
+        
+        // تحديث المدة إذا كانت غير معروفة
+        if (audioElement.duration && !this.duration) {
+            this.duration = audioElement.duration;
+            this.totalTimeEl.textContent = this.formatTime(audioElement.duration);
+        }
+        
         this.progressInterval = setInterval(() => {
-            if (this.currentTime >= this.duration) {
-                if (this.isRepeat) {
-                    this.currentTime = 0;
-                } else {
-                    this.playNext();
-                    return;
+            if (this.isPlaying && audioElement) {
+                // التحقق من أن الصوت لا يزال يعمل
+                if (audioElement.paused) {
+                    console.log('⚠️ الصوت متوقف، جاري إعادة التشغيل...');
+                    audioElement.play().catch(e => {
+                        console.log('فشل إعادة التشغيل:', e);
+                    });
+                }
+                
+                this.currentTime = audioElement.currentTime;
+                this.updateProgress();
+                
+                // تحديث المدة إذا تغيرت
+                if (audioElement.duration && this.duration !== audioElement.duration) {
+                    this.duration = audioElement.duration;
+                    this.totalTimeEl.textContent = this.formatTime(audioElement.duration);
                 }
             }
-            
-            if (!this.currentAudio) {
-                this.currentTime += 0.1;
-                this.updateProgress();
-            }
         }, 100);
+    }
+    
+    stopProgressTracking() {
+        if (this.progressInterval) {
+            clearInterval(this.progressInterval);
+            this.progressInterval = null;
+        }
     }
     
     stopAudioFile() {
@@ -685,7 +967,11 @@ class NeonMusicPlayer {
                     audio.currentTime = 0;
                     audio.play();
                 } else {
-                    this.playNext();
+                    // Reset to beginning and replay
+                    this.currentTime = 0;
+                    this.updateProgress();
+                    audio.currentTime = 0;
+                    audio.play();
                 }
             });
             
@@ -709,47 +995,50 @@ class NeonMusicPlayer {
         this.videoAudio = document.getElementById('videoAudio');
         if (this.videoAudio) {
             this.videoAudio.volume = 0.7;
-            this.videoAudio.addEventListener('loadedmetadata', () => {
-                console.log('Video audio loaded successfully');
-                this.duration = this.videoAudio.duration;
-                this.totalTimeEl.textContent = this.formatTime(this.videoAudio.duration);
-                
-                setTimeout(() => {
-                    this.videoAudio.muted = false;
-                    this.videoAudio.play().then(() => {
-                        console.log('Video audio autoplay successful!');
-                        this.isPlaying = true;
-                        if (this.liveDot) {
-                            this.liveDot.style.animationPlayState = 'running';
-                        }
-                        this.animateVisualizer(true);
-                        this.startProgressSimulation();
-                    }).catch(e => {
-                        console.log('Video audio autoplay failed:', e);
+            
+            // تحقق دوري للتأكد من أن الأغنية تعمل
+            const checkAudioStatus = () => {
+                if (this.isPlaying && this.videoAudio && this.videoAudio.paused) {
+                    console.log('⚠️ الأغنية متوقفة، جاري إعادة التشغيل...');
+                    this.videoAudio.play().catch(e => {
+                        console.log('فشل إعادة التشغيل:', e);
                     });
-                }, 500);
-            });
-            
-            this.videoAudio.addEventListener('error', (e) => {
-                console.log('Video audio error:', e);
-            });
-            
-            this.videoAudio.addEventListener('timeupdate', () => {
-                if (this.isPlaying && !this.currentAudio) {
-                    this.currentTime = this.videoAudio.currentTime;
-                    this.updateProgress();
                 }
-            });
+            };
             
-            this.videoAudio.addEventListener('ended', () => {
-                console.log('Video audio ended');
-                if (this.isRepeat) {
-                    this.videoAudio.currentTime = 0;
-                    this.videoAudio.play();
-                } else {
-                    this.playNext();
-                }
-            });
+            // تشغيل فوري عند تحميل الصفحة
+            const attemptPlay = () => {
+                this.videoAudio.play().then(() => {
+                    console.log('✅ الأغنية تعمل الآن!');
+                    this.isPlaying = true;
+                    this.hasInteracted = true;
+                    this.startProgressTracking();
+                    this.animateVisualizer(true);
+                    if (this.playBtn) {
+                        this.playBtn.innerHTML = `<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+                    }
+                }).catch(e => {
+                    console.log('❌ محاولة مع muted:', e);
+                    this.videoAudio.muted = true;
+                    this.videoAudio.play().then(() => {
+                        setTimeout(() => { this.videoAudio.muted = false; }, 100);
+                        this.isPlaying = true;
+                        this.hasInteracted = true;
+                        this.startProgressTracking();
+                        this.animateVisualizer(true);
+                    }).catch(() => {
+                        this.playRegularAudio();
+                    });
+                });
+            };
+            
+            // محاولات متعددة
+            attemptPlay();
+            setTimeout(() => !this.isPlaying && attemptPlay(), 500);
+            setTimeout(() => !this.isPlaying && attemptPlay(), 1000);
+            
+            // تحقق كل 5 ثواني
+            setInterval(checkAudioStatus, 5000);
         }
     }
     
@@ -783,21 +1072,25 @@ class NeonMusicPlayer {
         const enableAutoplay = () => {
             if (!this.hasInteracted) {
                 this.hasInteracted = true;
-                console.log('User interaction detected, autoplay enabled');
+                console.log('تم اكتشاف تفاعل المستخدم - تفعيل التشغيل التلقائي');
                 
                 if (this.audioContext && this.audioContext.state === 'suspended') {
                     this.audioContext.resume().then(() => {
-                        console.log('Audio context resumed on interaction');
-                        this.play();
+                        console.log('تم استئناف سياق الصوت عند التفاعل');
+                        if (!this.isPlaying) {
+                            this.play();
+                        }
                     }).catch(e => {
-                        console.log('Failed to resume context:', e);
-                        this.play();
+                        console.log('فشل استئناف السياق:', e);
+                        if (!this.isPlaying) {
+                            this.play();
+                        }
                     });
-                } else {
+                } else if (!this.isPlaying) {
                     setTimeout(() => {
                         this.play();
-                        console.log('Auto-playing after user interaction');
-                    }, 200);
+                        console.log('تشغيل تلقائي بعد تفاعل المستخدم');
+                    }, 500);
                 }
             }
         };
@@ -807,7 +1100,7 @@ class NeonMusicPlayer {
         document.addEventListener('touchstart', enableAutoplay, { once: true });
         document.addEventListener('mousedown', enableAutoplay, { once: true });
         
-        console.log('Interaction detection setup complete');
+        console.log('تم إعداد اكتشاف التفاعل - التشغيل التلقائي مفعّل');
     }
 }
 
@@ -815,25 +1108,5 @@ class NeonMusicPlayer {
 document.addEventListener('DOMContentLoaded', () => {
     const neonPlayer = new NeonMusicPlayer();
     
-    // Try immediate play with Web Audio API
-    setTimeout(() => {
-        console.log('Attempting immediate play with Web Audio API');
-        if (window.globalAudioContext && window.globalAudioContext.state === 'suspended') {
-            window.globalAudioContext.resume().then(() => {
-                console.log('Global context resumed successfully');
-                neonPlayer.play().catch(e => {
-                    console.log('Play failed after context resume:', e);
-                });
-            }).catch(e => {
-                console.log('Failed to resume global context:', e);
-                neonPlayer.play().catch(e => {
-                    console.log('Direct play failed:', e);
-                });
-            });
-        } else {
-            neonPlayer.play().catch(e => {
-                console.log('Direct play failed:', e);
-            });
-        }
-    }, 1000);
+    console.log('Music player ready - user must click play to start');
 });

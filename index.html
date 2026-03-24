@@ -2,7 +2,30 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="موقع Tempest الرسمي - مملكة الألعاب والتفاعل">
+    <meta name="keywords" content="تمبست, ألعاب, تفاعل, مجتمع">
+    <meta name="author" content="Tempest Team">
+    <meta name="theme-color" content="#8B0000">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tempest">
+    <meta property="og:title" content="Tempest - المملكة الرسمية">
+    <meta property="og:description" content="انضم إلى مملكة تمبست واستمتع بأفضل التجارب">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="media/image/tempest-logo.png">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="preload" href="media/music/bury the light.mp3" as="audio">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
     <title>Tempest Website</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="neon-player.css">
@@ -56,8 +79,8 @@
     <!-- About Section -->
     <section id="about" class="section">
         <div>
-            <h1>احصائات المملكة</h1>
-            <p class="section-info">...احضائات المملكة بالكامل و التفاعل المباشر</p>
+            <h1>احصائات فروع المملكة</h1>
+            <p class="section-info">...احضائات فروع المملكة بالكامل و التفاعل المباشر</p>
             
             <!-- About Stats Cards -->
             <div class="about-stats">
@@ -103,12 +126,12 @@
                     </div>
                 </div>
                 <div class="founders-card">
-                    <img src="media/image/kim dokja.jpg" alt="kim dokja" class="founders-image">
-                    <h3>كيم</h3>
+                    <img src="media/image/شاغر.jpg" alt="kim dokja" class="founders-image">
+                    <h3>شاغر</h3>
                     <p class="founder-title">مستشار</p>
                     <div class="founder-traits">
-                        <span class="trait">منظم</span>
-                        <span class="trait">مخطط</span>
+                        <span class="trait">؟؟؟</span>
+                        <span class="trait">؟؟؟</span>
                     </div>
                 </div>
                 <div class="founders-card">
@@ -126,7 +149,7 @@
                     <p class="founder-title">نائب لورد</p>
                     <div class="founder-traits">
                         <span class="trait">ناشر</span>
-                        <span class="trait">مقابر</span>
+                        <span class="trait">مثابر</span>
                     </div>
                 </div>
                 <div class="founders-card">
@@ -163,8 +186,8 @@
     <!-- Portfolio Section -->
     <section id="portfolio" class="section">
         <div>
-            <h1>اكبر نقاباتنا</h1>
-            <p class="section-info">اكبر نقابات مملكة تمبست</p>
+            <h1>اكبر فروعنا</h1>
+            <p class="section-info">اكبر فروع مملكة تمبست</p>
             
             <!-- Portfolio Cards -->
             <div class="portfolio-cards">
@@ -339,13 +362,10 @@
         </div>
     </footer>
 
-    <!-- Hidden video audio player for autoplay -->
-    <video id="videoAudio" style="display:none;" autoplay loop muted>
+    <!-- Hidden video audio player for immediate autoplay -->
+    <video id="videoAudio" style="display:none;" autoplay loop playsinline>
         <source src="media/music/bury the light.mp3" type="audio/mpeg">
     </video>
-    
-    <!-- Hidden iframe audio player for autoplay -->
-    <iframe id="audioPlayer" style="display:none;" allow="autoplay" src="about:blank"></iframe>
     
     <!-- Web Audio API Context -->
     <script>
@@ -366,14 +386,7 @@
             }
         }, { once: true });
         
-        // Try iframe autoplay with actual music file
-        setTimeout(() => {
-            const iframe = document.getElementById('audioPlayer');
-            if (iframe) {
-                iframe.src = 'media/music/bury the light.mp3';
-                console.log('Loading music in iframe for autoplay');
-            }
-        }, 100);
+        console.log('Audio context initialized - manual playback only');
     </script>
 
     <script src="script.js"></script>
